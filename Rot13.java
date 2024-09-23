@@ -1,7 +1,17 @@
 import java.util.Scanner;
 public class Rot13 {
-    public static final char[] abecedariMinus = {'a', 'à', 'b', 'c', 'ç', 'd', 'e', 'è', 'f', 'g', 'h', 'i', 'í', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'ò', 'p', 'q', 'r', 's', 't', 'u', 'ú', 'v', 'w', 'x', 'y', 'z'};
-    public static final char[] abecedariMajus = {'A', 'À', 'B', 'C', 'Ç', 'D', 'E', 'È', 'F', 'G', 'H', 'I', 'Í', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'Ò', 'P', 'Q', 'R', 'S', 'T', 'U', 'Ú', 'V', 'W', 'X', 'Y', 'Z'};
+    public static final char[] abecedariMinus = {
+        'a', 'à', 'b', 'c', 'ç', 'd', 'e', 'è', 'é', 'f', 'g', 'h', 'i', 'í', 
+        'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'ò', 'ó', 'p', 'q', 'r', 's', 't', 'u', 
+        'ú', 'v', 'w', 'x', 'y', 'z'
+    };
+    
+    public static final char[] abecedariMajus = {
+        'A', 'À', 'B', 'C', 'Ç', 'D', 'E', 'È', 'É', 'F', 'G', 'H', 'I', 'Í', 
+        'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'Ò', 'Ó', 'P', 'Q', 'R', 'S', 'T', 'U', 
+        'Ú', 'V', 'W', 'X', 'Y', 'Z'
+    };
+    
 
     public static String xifraRot13(String cadena) {
         String cadenaFinal = "";
