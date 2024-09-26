@@ -1,15 +1,15 @@
 import java.util.Scanner;
 public class Rot13 {
     public static final char[] abecedariMinus = {
-        'a', 'à', 'b', 'c', 'ç', 'd', 'e', 'è', 'é', 'f', 'g', 'h', 'i', 'í', 
+        'a', 'à', 'b', 'c', 'ç', 'd', 'e', 'è', 'é', 'f', 'g', 'h', 'i', 'í', 'ï',
         'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'ò', 'ó', 'p', 'q', 'r', 's', 't', 'u', 
-        'ú', 'v', 'w', 'x', 'y', 'z'
+        'ú', 'ü', 'v', 'w', 'x', 'y', 'z'
     };
     
     public static final char[] abecedariMajus = {
-        'A', 'À', 'B', 'C', 'Ç', 'D', 'E', 'È', 'É', 'F', 'G', 'H', 'I', 'Í', 
+        'A', 'À', 'B', 'C', 'Ç', 'D', 'E', 'È', 'É', 'F', 'G', 'H', 'I', 'Í', 'Ï',
         'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'Ò', 'Ó', 'P', 'Q', 'R', 'S', 'T', 'U', 
-        'Ú', 'V', 'W', 'X', 'Y', 'Z'
+        'Ú', 'Ü', 'V', 'W', 'X', 'Y', 'Z'
     };
     
 
