@@ -71,11 +71,11 @@ public class RotX {
         return cadenaFinal;
     }
 
-    public static String forcaBrutaX(String cadenaXifrada) {
+    public static void forcaBrutaX(String cadenaXifrada) {
         for (int i = 0; i < ABECEDARIMAJUS.length; i++) {
-            cadenaXifrada = desxifraRotX(cadenaXifrada, i);
+            String resultat = desxifraRotX(cadenaXifrada, i);
+            System.out.println("Amb desplaçament de "+ i + " és: " + resultat);
         }
-        return cadenaXifrada;
     }
 
     public static void main(String[] args) {
@@ -89,15 +89,15 @@ public class RotX {
         desplacament = desplacament % ABECEDARIMINUS.length;
         if (resposta.equalsIgnoreCase("xifrar") || resposta.equalsIgnoreCase("x")) {
             String textXifrat = xifraRotX(text, desplacament);
-            System.out.println(textXifrat);
+            System.out.println("El text xifrat és: " + textXifrat);
             System.out.println("Ara el programa mostrarà el missatge desxifrat amb desplaçaments fins a la longitud de l'abecedari:");
-            System.out.println(forcaBrutaX(textXifrat));
+            forcaBrutaX(textXifrat);
             
         } else if (resposta.equalsIgnoreCase("desxifrar") || resposta.equalsIgnoreCase("d")) {
             String textDesxifrat = desxifraRotX(text, desplacament);
-            System.out.println(textDesxifrat);
+            System.out.println("El text desxifrat és " + textDesxifrat);
             System.out.println("Ara el programa mostrarà el missatge desxifrat amb desplaçaments fins a la longitud de l'abecedari:");
-            System.out.println(forcaBrutaX(textDesxifrat));
+            forcaBrutaX(textDesxifrat);
         }
         scanner.close();
     }
