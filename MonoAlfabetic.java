@@ -9,7 +9,6 @@ public class MonoAlfabetic {
         alfabetPermutat = permutaAlfabet(abecedari);
     }
 
-    // Método para permutar el abecedario
     public static char[] permutaAlfabet(char[] alfabet) {
         ArrayList<Character> llista = new ArrayList<>();
         for (char c : alfabet) {
@@ -23,17 +22,15 @@ public class MonoAlfabetic {
         return alfabetPermutat;
     }
 
-    // Método para cifrar con el cifrado monoalfabético
     public static String xifraMonoAlfa(String cadena) {
         StringBuilder cadenaFinal = new StringBuilder();
 
         for (int i = 0; i < cadena.length(); i++) {
             char lletra = cadena.charAt(i);
-            boolean esMinuscula = Character.isLowerCase(lletra);  // Verifica si es minúscula
-            char lletraAMaiuscula = Character.toUpperCase(lletra);  // Convierte a mayúscula para buscar en el abecedario
+            boolean esMinuscula = Character.isLowerCase(lletra);  
+            char lletraAMaiuscula = Character.toUpperCase(lletra);  
             int posicio = -1;
 
-            // Buscar la letra en el abecedario original
             for (int j = 0; j < abecedari.length; j++) {
                 if (abecedari[j] == lletraAMaiuscula) {
                     posicio = j;
@@ -41,31 +38,28 @@ public class MonoAlfabetic {
                 }
             }
 
-            // Si la letra se encuentra en el abecedario, cifrarla
             if (posicio != -1) {
-                char lletraXifrada = alfabetPermutat[posicio];  // Letra permutada
+                char lletraXifrada = alfabetPermutat[posicio];  
                 if (esMinuscula) {
-                    lletraXifrada = Character.toLowerCase(lletraXifrada);  // Convertir a minúscula si era minúscula
+                    lletraXifrada = Character.toLowerCase(lletraXifrada);
                 }
                 cadenaFinal.append(lletraXifrada);
             } else {
-                cadenaFinal.append(lletra);  // Si no está en el abecedario, no la cambia
+                cadenaFinal.append(lletra); 
             }
         }
         return cadenaFinal.toString();
     }
 
-    // Método para descifrar con el cifrado monoalfabético
     public static String desxifraMonoAlfa(String cadena) {
         StringBuilder cadenaFinal = new StringBuilder();
 
         for (int i = 0; i < cadena.length(); i++) {
             char lletra = cadena.charAt(i);
-            boolean esMinuscula = Character.isLowerCase(lletra);  // Verifica si es minúscula
-            char lletraAMaiuscula = Character.toUpperCase(lletra);  // Convierte a mayúscula para buscar en el abecedario permutado
+            boolean esMinuscula = Character.isLowerCase(lletra);
+            char lletraAMaiuscula = Character.toUpperCase(lletra);
             int posicio = -1;
 
-            // Buscar la letra en el alfabeto permutado
             for (int j = 0; j < alfabetPermutat.length; j++) {
                 if (alfabetPermutat[j] == lletraAMaiuscula) {
                     posicio = j;
@@ -73,15 +67,14 @@ public class MonoAlfabetic {
                 }
             }
 
-            // Si la letra se encuentra en el alfabeto permutado, descifrarla
             if (posicio != -1) {
-                char lletraDesxifrada = abecedari[posicio];  // Letra original
+                char lletraDesxifrada = abecedari[posicio]; 
                 if (esMinuscula) {
-                    lletraDesxifrada = Character.toLowerCase(lletraDesxifrada);  // Convertir a minúscula si era minúscula
+                    lletraDesxifrada = Character.toLowerCase(lletraDesxifrada);
                 }
                 cadenaFinal.append(lletraDesxifrada);
             } else {
-                cadenaFinal.append(lletra);  // Si no está en el alfabeto permutado, no la cambia
+                cadenaFinal.append(lletra);
             }
         }
         return cadenaFinal.toString();
@@ -91,11 +84,9 @@ public class MonoAlfabetic {
         String frase1 = "M'agrada la Gwenpool i el Fortnite";
         String frase2 = "El més bonic del món és el cànon de la música que sona com un riu.";
 
-        // Cifrado
         String frase1Xifrada = xifraMonoAlfa(frase1);
         String frase2Xifrada = xifraMonoAlfa(frase2);
 
-        // Descifrado
         String frase1Desxifrada = desxifraMonoAlfa(frase1Xifrada);
         String frase2Desxifrada = desxifraMonoAlfa(frase2Xifrada);
 
