@@ -5,20 +5,23 @@ import java.util.Random;
 public class PoliAlfabetic {
     public static final char[] abecedari = "AÀÁÄBCÇDEÈÉËFGHIÍÏJKLMNOÒÓÖPQRSTUÚÜVWXYZÑ".toCharArray();
     public static final char[] alfabetPermutat;
+    public static int clauSecreta;
+    public static final Random random = new Random();
 
     static {
         alfabetPermutat = permutaAlfabet(abecedari);
     }
 
-    public static final Random random = new Random();
+    public static void initRandom(int clauSecreta) {
+        random.setSeed(clauSecreta); //setSeed inicialitza GNA (generador de números aleatoris)
+    }
 
-    // Método para permutar el abecedario
     public static char[] permutaAlfabet(char[] alfabet) {
         ArrayList<Character> llista = new ArrayList<>();
         for (char c : alfabet) {
             llista.add(c);
         }
-        Collections.shuffle(llista); // Barajar la lista
+        Collections.shuffle(llista, random);
         char[] alfabetPermutat = new char[llista.size()];
         for (int i = 0; i < llista.size(); i++) {
             alfabetPermutat[i] = llista.get(i);
@@ -26,17 +29,15 @@ public class PoliAlfabetic {
         return alfabetPermutat;
     }
 
-    // Método para cifrar con el cifrado monoalfabético
-    public static String xifraPoliAlfa(String cadena) {
+    public static String xifraPoliAlfa(String msg) {
         StringBuilder cadenaFinal = new StringBuilder();
 
-        for (int i = 0; i < cadena.length(); i++) {
-            char lletra = cadena.charAt(i);
-            boolean esMinuscula = Character.isLowerCase(lletra);  // Verifica si es minúscula
-            char lletraAMaiuscula = Character.toUpperCase(lletra);  // Convierte a mayúscula para buscar en el abecedario
+        for (int i = 0; i < msg.length(); i++) {
+            char lletra = msg.charAt(i);
+            boolean esMinuscula = Character.isLowerCase(lletra);
+            char lletraAMaiuscula = Character.toUpperCase(lletra);
             int posicio = -1;
 
-            // Buscar la letra en el abecedario original
             for (int j = 0; j < abecedari.length; j++) {
                 if (abecedari[j] == lletraAMaiuscula) {
                     posicio = j;
@@ -44,31 +45,28 @@ public class PoliAlfabetic {
                 }
             }
 
-            // Si la letra se encuentra en el abecedario, cifrarla
             if (posicio != -1) {
-                char lletraXifrada = alfabetPermutat[posicio];  // Letra permutada
+                char lletraXifrada = alfabetPermutat[posicio];
                 if (esMinuscula) {
-                    lletraXifrada = Character.toLowerCase(lletraXifrada);  // Convertir a minúscula si era minúscula
+                    lletraXifrada = Character.toLowerCase(lletraXifrada);
                 }
                 cadenaFinal.append(lletraXifrada);
             } else {
-                cadenaFinal.append(lletra);  // Si no está en el abecedario, no la cambia
+                cadenaFinal.append(lletra);
             }
         }
         return cadenaFinal.toString();
     }
 
-    // Método para descifrar con el cifrado monoalfabético
-    public static String desxifraPoliAlfa(String cadena) {
+    public static String desxifraPoliAlfa(String msgXifrat) {
         StringBuilder cadenaFinal = new StringBuilder();
 
-        for (int i = 0; i < cadena.length(); i++) {
-            char lletra = cadena.charAt(i);
-            boolean esMinuscula = Character.isLowerCase(lletra);  // Verifica si es minúscula
-            char lletraAMaiuscula = Character.toUpperCase(lletra);  // Convierte a mayúscula para buscar en el abecedario permutado
+        for (int i = 0; i < msgXifrat.length(); i++) {
+            char lletra = msgXifrat.charAt(i);
+            boolean esMinuscula = Character.isLowerCase(lletra);
+            char lletraAMaiuscula = Character.toUpperCase(lletra);
             int posicio = -1;
 
-            // Buscar la letra en el alfabeto permutado
             for (int j = 0; j < alfabetPermutat.length; j++) {
                 if (alfabetPermutat[j] == lletraAMaiuscula) {
                     posicio = j;
@@ -76,15 +74,14 @@ public class PoliAlfabetic {
                 }
             }
 
-            // Si la letra se encuentra en el alfabeto permutado, descifrarla
             if (posicio != -1) {
-                char lletraDesxifrada = abecedari[posicio];  // Letra original
+                char lletraDesxifrada = abecedari[posicio];
                 if (esMinuscula) {
-                    lletraDesxifrada = Character.toLowerCase(lletraDesxifrada);  // Convertir a minúscula si era minúscula
+                    lletraDesxifrada = Character.toLowerCase(lletraDesxifrada);
                 }
                 cadenaFinal.append(lletraDesxifrada);
             } else {
-                cadenaFinal.append(lletra);  // Si no está en el alfabeto permutado, no la cambia
+                cadenaFinal.append(lletra);
             }
         }
         return cadenaFinal.toString();
