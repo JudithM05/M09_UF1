@@ -3,7 +3,7 @@ package iticbcn.xifratge;
 public class TestXifratge {
     public static void main(String[] args) {
     AlgorismeFactory[] aFactory = { new AlgorismeAES(), new
-    AlgorismeMonoalfabetic(), new AlgorismePolialfabetic(), new AlgorismeRotX() };
+    AlgorismeMonoAlfabetic(), new AlgorismePoliAlfabetic(), new AlgorismeRotX() };
     String[] aNames = { "AES", "Monoalfabètic", "Polialfabètic", "RotX" };
     String[] msgs = { "Test 01: Àlgid, Ülrich, Vàlid",
     "Test 02: Caràcters especials ¡!¿?*-123[]{}@#" };
