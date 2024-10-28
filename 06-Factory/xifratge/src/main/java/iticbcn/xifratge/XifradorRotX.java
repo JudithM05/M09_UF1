@@ -78,4 +78,30 @@ public class XifradorRotX implements Xifrador {
             System.out.println("Amb desplaçament de "+ i + " és: " + resultat);
         }
     }
+
+    @Override
+    public TextXifrat xifra(String msg, String clau) throws ClauNoSuportada {
+        int desplacament;
+        try {
+            desplacament = Integer.parseInt(clau);  // Convertim la clau a un int
+        } catch (NumberFormatException e) {
+            throw new ClauNoSuportada("La clau " + clau + " no és vàlida per Xifrat RotX");
+        }
+
+        String msgXifrat = xifraRotX(msg, desplacament);
+        return new TextXifrat(msgXifrat.getBytes());  // Retorna el resultat com a TextXifrat
+    }
+
+    @Override
+    public String desxifra(TextXifrat xifrat, String clau) throws ClauNoSuportada {
+        int desplacament;
+        try {
+            desplacament = Integer.parseInt(clau);  // Converteix la clau a un ints
+        } catch (NumberFormatException e) {
+            throw new ClauNoSuportada("La clau " + clau + " no és vàlida per Xifrat RotX");
+        }
+
+        String msgXifrat = new String(xifrat.getBytes());  // Obté el missatge xifrat des dels bytes
+        return desxifraRotX(msgXifrat, desplacament);  // Desencripta i retorna el missatge com a String
+    }
 }

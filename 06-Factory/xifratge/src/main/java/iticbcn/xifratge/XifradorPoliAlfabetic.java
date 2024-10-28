@@ -9,10 +9,10 @@ public class XifradorPoliAlfabetic implements Xifrador {
     public static long clauSecreta;
     public static final Random random = new Random();
 
-    public XifradorPoliAlfabetic() {
-        alfabetPermutat = permutaAlfabet(abecedari);  // Inicializamos el alfabeto permutado
+    // Bloque static per inicialitzar el alfabetPermutat
+    static {
+        alfabetPermutat = permutaAlfabet(abecedari);  // Inicialitza el alfabet permutat
     }
-
     public void initRandom(long clauSecreta) {
         random.setSeed(clauSecreta); //setSeed inicialitza GNA (generador de números aleatoris)
     }
@@ -35,7 +35,7 @@ public class XifradorPoliAlfabetic implements Xifrador {
         // Xifra el missatge utilitzant el métode existent
         String msgXifrat = xifraPoliAlfa(msg);
 
-        // Devuelve el resultado como un objeto TextXifrat
+        // Retorna el resultat com a un objecte TextXifrat
         return new TextXifrat(msgXifrat.getBytes());
     }
 
@@ -44,24 +44,24 @@ public class XifradorPoliAlfabetic implements Xifrador {
         long clauSecreta;
 
         try {
-            // Convertir la clave a un número long
+            // Convertir la clau a un número long
             clauSecreta = Long.parseLong(clau);
         } catch (NumberFormatException e) {
-            // Si la clave no es un número válido, lanza la excepción ClauNoSuportada
+            // Si la clau no és un número vàlid, llença l'excepció ClauNoSuportada
             throw new ClauNoSuportada("La clau " + clau + " no és vàlida per Xifrat Polialfabètic");
         }
 
-        // Inicializa el generador de números aleatorios con la clave secreta
+        // Inicialitza el generador de números aleatoris amb la clau secreta
         initRandom(clauSecreta);
 
-        // Desxifra el mensaje utilizando el método existente
+        // Desxifra el missatge utilitzant el métode existent
         String msgDesxifrat = desxifraPoliAlfa(new String(xifrat.getBytes()));
 
-        // Devuelve el mensaje descifrado
+        // Retorna el missatge desxifrat
         return msgDesxifrat;
     }
 
-    public char[] permutaAlfabet(char[] alfabet) {
+    public static char[] permutaAlfabet(char[] alfabet) {
         ArrayList<Character> llista = new ArrayList<>();
         for (char c : alfabet) {
             llista.add(c);
