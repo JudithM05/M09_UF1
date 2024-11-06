@@ -24,44 +24,63 @@ public class XifradorRotX implements Xifrador {
             if (Character.isLowerCase(lletra)) {
                 for (int i = 0; i < longitudMinus; i++) {
                     if (ABECEDARIMINUS[i] == lletra) {
-                        // Aseguramos desplazamiento cíclico
-                        cadenaFinal += ABECEDARIMINUS[(i + desplacament) % longitudMinus];
+                        // Desplaçament cíclic i positiu
+                        int index = (i + desplacament) % longitudMinus;
+                        if (index < 0) {
+                            index += longitudMinus;
+                        }
+                        cadenaFinal += ABECEDARIMINUS[index];
                         break;
                     }
                 }
             } else if (Character.isUpperCase(lletra)) {
                 for (int j = 0; j < longitudMajus; j++) {
                     if (ABECEDARIMAJUS[j] == lletra) {
-                        // Aseguramos desplazamiento cíclico
-                        cadenaFinal += ABECEDARIMAJUS[(j + desplacament) % longitudMajus];
+                        // Desplaçament cíclic i positiu
+                        int index = (j + desplacament) % longitudMajus;
+                        if (index < 0) {
+                            index += longitudMajus;
+                        }
+                        cadenaFinal += ABECEDARIMAJUS[index];
                         break;
                     }
                 }
             } else {
-                cadenaFinal += lletra;
+                cadenaFinal += lletra; // Añade los caracteres no alfabéticos tal cual
             }
         }
         return cadenaFinal;
     }
+    
 
     public String desxifraRotX(String cadena, int desplacament) {
         String cadenaFinal = "";
         int longitudMinus = ABECEDARIMINUS.length;
         int longitudMajus = ABECEDARIMAJUS.length;
-
+    
         for (int caracter = 0; caracter < cadena.length(); caracter++) {
             char lletra = cadena.charAt(caracter);
             if (Character.isLowerCase(lletra)) {
                 for (int i = 0; i < longitudMinus; i++) {
                     if (ABECEDARIMINUS[i] == lletra) {
-                        cadenaFinal += ABECEDARIMINUS[(i - desplacament + longitudMinus) % longitudMinus];
+                        // Índex sempre positiu
+                        int index = (i - desplacament) % longitudMinus;
+                        if (index < 0) {
+                            index += longitudMinus;
+                        }
+                        cadenaFinal += ABECEDARIMINUS[index];
                         break;
                     }
                 }
             } else if (Character.isUpperCase(lletra)) {
                 for (int j = 0; j < longitudMajus; j++) {
                     if (ABECEDARIMAJUS[j] == lletra) {
-                        cadenaFinal += ABECEDARIMAJUS[(j - desplacament + longitudMajus) % longitudMajus];
+                        // Índex sempre positiu
+                        int index = (j - desplacament) % longitudMajus;
+                        if (index < 0) {
+                            index += longitudMajus;
+                        }
+                        cadenaFinal += ABECEDARIMAJUS[index];
                         break;
                     }
                 }
@@ -71,6 +90,7 @@ public class XifradorRotX implements Xifrador {
         }
         return cadenaFinal;
     }
+    
 
     public void forcaBrutaX(String cadenaXifrada) {
         for (int i = 0; i < ABECEDARIMAJUS.length; i++) {
